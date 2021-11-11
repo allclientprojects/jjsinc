@@ -2,6 +2,9 @@
   <library name="Flutter Plugins" type="FlutterPluginsLibraryType">
     <CLASSES>
       <root url="file://$PROJECT_DIR$/../../developer/flutter/.pub-cache/hosted/pub.dartlang.org/modal_progress_hud_nsn-0.1.0-nullsafety-1" />
+      <root url="file://$PROJECT_DIR$/../../developer/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_windows-2.0.4" />
+      <root url="file://$PROJECT_DIR$/../../developer/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider-2.0.6" />
+      <root url="file://$PROJECT_DIR$/../../developer/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_linux-2.1.1" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
