@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:jjsinc/main.dart';
 import 'package:jjsinc/providers/anonymous_user.dart';
-import 'package:jjsinc/providers/auth_user.dart';
+import 'package:jjsinc/providers/auth_users.dart';
 import 'package:jjsinc/utils/colors.dart';
 import 'package:jjsinc/view/auth/auth_bloc.dart';
 import 'package:jjsinc/view/auth/roles.dart';
@@ -19,12 +19,12 @@ void startApp() async{
 
 
   AnonymousUser anonymousUser = AnonymousUser();
-  AuthUser authUser = AuthUser();
+  AuthUsers authUsers = AuthUsers();
 
   // create new AuthBloc
   AuthBloc authBloc = AuthBloc(
     anonymousUser: anonymousUser,
-    authUser: authUser,
+    authUsers: authUsers,
     // authApi: AuthApi(authApiKey!),
   );
 
@@ -40,7 +40,7 @@ void startApp() async{
           dispose: (_, bloc) => bloc.dispose(),
         ),
         ChangeNotifierProvider(create: (ctx) => anonymousUser),
-        ChangeNotifierProvider(create: (ctx) => authUser),
+        ChangeNotifierProvider(create: (ctx) => authUsers),
       ],
             child: const JjsApp(),
     )
@@ -104,6 +104,8 @@ class JjsApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSwatch().copyWith(secondary: const Color.fromRGBO(255, 162, 128, 1.0)),
           ),
           home: home,
+          routes: role!.routes!,
+          builder: role.navigationBuilder,
         );
       },
     );

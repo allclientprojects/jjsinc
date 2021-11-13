@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class RegistrationScreen extends StatefulWidget {
 
-  static const String  routeName = '/registration';
+  static const String  routerName = '/registration';
   
 
 
