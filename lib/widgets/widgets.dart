@@ -7,20 +7,26 @@ import 'package:jjsinc/utils/colors.dart';
 
 class Widgets{
 
-
-
- static Container inputTextField({required BuildContext context, Color? bgColor, TextEditingController? controller, String? labelText}){
+ static Container inputTextField({required BuildContext context, Color? bgColor, TextEditingController? controller, String? labelText, TextInputType? textInputType, required VoidCallback? onSaved(String),  String? Function(String?)? validator, required Function(String value) onChanged,}){
     return Container(
       height: 50,
       width: MediaQuery.of(context).size.width - 100,
-
       decoration: BoxDecoration(
         color: AppColors.yellow,
           borderRadius: BorderRadius.circular(5)
       ),
-      child:  TextField(
-        controller: controller,
+      child:  TextFormField(
+        // controlle
+        autocorrect: false,
+        keyboardType: textInputType,
+        validator: validator,
+        onSaved: onSaved,
+        onChanged: (val){
+          onChanged(val);
+          print(val);
+        },
         decoration: InputDecoration(
+        isDense: true,
           border: OutlineInputBorder(),
           labelText: labelText,
           labelStyle: GoogleFonts.publicSans(
@@ -32,8 +38,6 @@ class Widgets{
       ),
     );
   }
-
-
  static InkWell actionButton({required BuildContext context, required void Function()? action, Color? bgColor, TextEditingController? controller, String? text}){
     return InkWell(
       onTap: action,
@@ -43,7 +47,6 @@ class Widgets{
         decoration: BoxDecoration(
             color: bgColor,
           borderRadius: BorderRadius.circular(5)
-
         ),
 
         child:  Center(
@@ -83,7 +86,7 @@ class Widgets{
     );
   }
 
-static Container callNow(){
+  static Container callNow(){
    return Container(
      height: 60,
      width: double.infinity,
@@ -106,6 +109,23 @@ static Container callNow(){
      ),
    );
 }
+
+
+ static showErrorDialog(BuildContext context, String errorMessage) {
+   showDialog(
+     context: context,
+     builder: (ctx) => AlertDialog(
+       title: Text('Hoppla!'),
+       content: Text(errorMessage),
+       actions: <Widget>[
+         TextButton(
+           onPressed: () => Navigator.of(ctx).pop(),
+           child: Text('Okay'),
+         )
+       ],
+     ),
+   );
+ }
 
 
 

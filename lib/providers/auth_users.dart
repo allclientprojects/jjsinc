@@ -50,7 +50,8 @@ class AuthUserApi{
     //   print(error);
     //   return Future.error(error);
     // });
-    var authUser = AuthUser.fromJson();
-    return authUser;
+    // var authUser = AuthUser.fromJson();
+    // return authUser;
+    return null;
   }
 }

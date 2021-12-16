@@ -7,10 +7,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:jjsinc/model/auth_user.dart';
 import 'package:jjsinc/utils/colors.dart';
 import 'package:jjsinc/view/home/track_my_transfer.dart';
 import 'package:jjsinc/widgets/widgets.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   static final String routerName = "home-screen";
@@ -30,6 +32,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+    AuthUser authUser = Provider.of<AuthUser>(context);
+
+
     return ModalProgressHUD(inAsyncCall: inAsyncCall, child: Scaffold(
       body: SafeArea(
         child: Scaffold(
@@ -84,17 +90,15 @@ class _HomeScreenState extends State<HomeScreen> {
                             RichText(
                               text:  TextSpan(
                                 text: '',
-
                                 // style: GoogleFonts.alfaSlabOne(),
                                 children: <TextSpan>[
-                                  TextSpan(text: 'Email: gary@redi.co.za\n', style: GoogleFonts.publicSans(
+                                  TextSpan(text: 'Email: ${authUser.email}\n', style: GoogleFonts.publicSans(
                                       textStyle: TextStyle( fontSize: 18, color: Colors.black,fontWeight: FontWeight.bold)
                                   ),),
                                   TextSpan(text: 'Name: ', style: TextStyle( fontSize: 18, color: Colors.black,fontWeight: FontWeight.bold)),
-                                  TextSpan(text: 'Gary Mailich\n', style: TextStyle( fontSize: 18,color: Colors.black)),
+                                  TextSpan(text: '${authUser.name}\n', style: TextStyle( fontSize: 18,color: Colors.black)),
                                   TextSpan(text: 'Mobile: ', style: TextStyle( fontSize: 18, color: Colors.black,fontWeight: FontWeight.bold)),
-                                  TextSpan(text: '088 555 6666\n', style: TextStyle( fontSize: 18,color: Colors.black)),
-
+                                  TextSpan(text: '${authUser.mobile}\n', style: TextStyle( fontSize: 18,color: Colors.black)),
 
                                 ],
                               ),
@@ -131,8 +135,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                 ),
-
-
                 Positioned(
                   bottom: 50,
                   left: 0,

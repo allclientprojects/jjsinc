@@ -1,10 +1,11 @@
 
 import 'package:flutter/material.dart';
+import 'package:jjsinc/providers/auth_users.dart';
 import 'package:jjsinc/view/login/login.dart';
 import 'package:jjsinc/view/registration/registration.dart';
 import 'package:flutter/material.dart';
 import 'package:jjsinc/model/auth_user.dart';
-import 'package:jjsinc/view/auth/auth_bloc.dart';
+import 'package:jjsinc/auth/auth_bloc.dart';
 
 import 'package:jjsinc/view/home/home.dart';
 import 'package:jjsinc/view/home/track_my_transfer.dart';

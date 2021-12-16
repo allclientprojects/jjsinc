@@ -3,12 +3,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/get_navigation.dart';
+import 'package:jjsinc/auth/auth_bloc.dart';
+import 'package:jjsinc/auth/roles.dart';
 import 'package:jjsinc/main.dart';
 import 'package:jjsinc/providers/anonymous_user.dart';
 import 'package:jjsinc/providers/auth_users.dart';
 import 'package:jjsinc/utils/colors.dart';
-import 'package:jjsinc/view/auth/auth_bloc.dart';
-import 'package:jjsinc/view/auth/roles.dart';
+
 import 'package:provider/provider.dart';
 
 
