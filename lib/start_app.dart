@@ -1,5 +1,4 @@
 
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/get_navigation.dart';
@@ -9,7 +8,6 @@ import 'package:jjsinc/main.dart';
 import 'package:jjsinc/providers/anonymous_user.dart';
 import 'package:jjsinc/providers/auth_users.dart';
 import 'package:jjsinc/utils/colors.dart';
-
 import 'package:provider/provider.dart';
 
 
@@ -17,7 +15,6 @@ void startApp() async{
 
   //required to use things like SharedPrefs before rendering first frame
   WidgetsFlutterBinding.ensureInitialized();
-
 
   AnonymousUser anonymousUser = AnonymousUser();
   AuthUsers authUsers = AuthUsers();
@@ -30,8 +27,6 @@ void startApp() async{
   );
 
   await authBloc.initialize();
-
-
 
   runApp(
     MultiProvider(
@@ -66,7 +61,6 @@ class JjsApp extends StatelessWidget {
 
         final Role? role = snapshot.data;
         final home = role?.homeBuilder(context);
-
 
         return GetMaterialApp(
           title: 'JjsApp',

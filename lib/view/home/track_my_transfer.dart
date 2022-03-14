@@ -1,9 +1,3 @@
-
-
-
-
-
-
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
@@ -18,7 +12,6 @@ import 'package:http/http.dart' as http;
 class TrackMyTransfer extends StatefulWidget {
   static final String routerName = "track-my-transfer";
 
-
   const TrackMyTransfer({Key? key}) : super(key: key);
 
   @override
@@ -26,8 +19,6 @@ class TrackMyTransfer extends StatefulWidget {
 }
 
 class _TrackMyTransferState extends State<TrackMyTransfer> {
-
-
   bool inAsyncCall = false;
 
   var url = "https://jsonplaceholder.typicode.com/todos/";
@@ -35,29 +26,23 @@ class _TrackMyTransferState extends State<TrackMyTransfer> {
   List<DummyList>? dummyList;
   List<TableRow> dummyListTableRow = [];
 
-
-
   Future<List<DummyList>?> fetchAlbum() async {
     final response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
       final String responseString = response.body;
       print(responseString);
-      List _dummyList =  jsonDecode(responseString);
+      List _dummyList = jsonDecode(responseString);
 
       dummyList = _dummyList.map((f) => DummyList.fromJson(f)).toList();
 
       print(dummyList);
       return dummyList;
-
-
     } else {
-
       return null;
     }
   }
 
-
-@override
+  @override
   void initState() {
     // TODO: implement initState
     super.initState();
@@ -125,152 +110,162 @@ class _TrackMyTransferState extends State<TrackMyTransfer> {
 
   @override
   Widget build(BuildContext context) {
-    return ModalProgressHUD(inAsyncCall: inAsyncCall, child: Scaffold(
-      body: SafeArea(
-        child: Scaffold(
-
-            body: Stack(
-              children: [
-                Image.asset("assets/images/bg-image2.jpg", height: double.infinity,width: double.infinity,fit: BoxFit.cover,),
-                Positioned(
-                  top: 10, right: 10,left: 10,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Icon(Icons.menu, size: 50,),
-                      Image.asset("assets/icons/logo1.png",width: MediaQuery.of(context).size.width/3,),
-                    ],
-                  ),),
-                Positioned(
-                  top: 80, right: 0,left: 0,
-                  child: Container(
-                    height: 50,
-                    decoration: BoxDecoration(
-                      color: AppColors.yellow,
-                      border: Border(
-                        top: BorderSide(
-                            color: Colors.black,
-                            width: 0.5
-                        ),
-                        bottom: BorderSide(
-                            color: Colors.black,
-                            width: 0.5
-                        ),
+    return ModalProgressHUD(
+      inAsyncCall: inAsyncCall,
+      child: Scaffold(
+        body: SafeArea(
+          child: Scaffold(
+              body: Stack(
+            children: [
+              Image.asset(
+                "assets/images/bg-image2.jpg",
+                height: double.infinity,
+                width: double.infinity,
+                fit: BoxFit.cover,
+              ),
+              Positioned(
+                top: 10,
+                right: 10,
+                left: 10,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Icon(
+                        Icons.menu,
+                        size: 50,
                       ),
                     ),
-                    child: Center(
-                      child: Text(
-                        "Track My Transfer", style: GoogleFonts.publicSans(
+                    Image.asset(
+                      "assets/icons/logo1.png",
+                      width: MediaQuery.of(context).size.width / 3,
+                    ),
+                  ],
+                ),
+              ),
+              Positioned(
+                top: 80,
+                right: 0,
+                left: 0,
+                child: Container(
+                  height: 50,
+                  decoration: BoxDecoration(
+                    color: AppColors.yellow,
+                    border: Border(
+                      top: BorderSide(color: Colors.black, width: 0.5),
+                      bottom: BorderSide(color: Colors.black, width: 0.5),
+                    ),
+                  ),
+                  child: Center(
+                    child: Text(
+                      "Track My Transfer",
+                      style: GoogleFonts.publicSans(
                           fontWeight: FontWeight.bold,
-                          fontSize: 20, color: Colors.black
-                      ),
-                      ),
+                          fontSize: 20,
+                          color: Colors.black),
                     ),
                   ),
                 ),
-                Positioned(
-                  top: 150,left: 20,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                     Text("Current File: ABC12345", style: GoogleFonts.publicSans(
-                       fontWeight: FontWeight.w700, fontSize: 25, color: Colors.black
-                     ),),
-                      SizedBox(
-                        height: 30,
-                      ),
-                      Container(
-                        height: 300,
-                        width: 350,
-                        child: ListView.builder(
-                            padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
-                            physics: NeverScrollableScrollPhysics(),
-                            shrinkWrap: true,
-                            itemCount: dummyList?.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              return Table(
-                                // border: TableBorder.all(
-                                //   width: 1.0,
-                                //   color: Colors.black87
-                                // ),
-                                  children: [
-                                    TableRow(children: [
-                                      TableCell(
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(6.0),
-                                          child: Text(
-                                            'Order No:',
-                                            style: TextStyle(
-                                                color: Colors.black87,
-                                                fontSize: 17.0,
-                                                fontWeight: FontWeight.bold),
-                                          ),
+              ),
+              Positioned(
+                top: 150,
+                left: 20,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Current File: ABC12345",
+                      style: GoogleFonts.publicSans(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 25,
+                          color: Colors.black),
+                    ),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    Container(
+                      height: 250,
+                      width: 350,
+                      child: ListView.builder(
+                          padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
+                          physics: NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: dummyList?.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return Table(
+                                border: TableBorder.all(
+                                    width: 1.0, color: Colors.black87),
+                                children: [
+                                  TableRow(children: [
+                                    TableCell(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(6.0),
+                                        child: Text(
+                                          'Item:',
+                                          style: TextStyle(
+                                              color: Colors.black87,
+                                              fontSize: 17.0,
+                                              fontWeight: FontWeight.bold),
                                         ),
                                       ),
-                                      TableCell(
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(6.0),
-                                          child: Text(
-                                            dummyList![index].id.toString(),
-                                            style: TextStyle(
-                                                color: Colors.black87,
-                                                fontSize: 17.0),
-                                          ),
+                                    ),
+                                    TableCell(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(6.0),
+                                        child: Text(
+                                          dummyList![index].id.toString(),
+                                          style: TextStyle(
+                                              color: Colors.black87,
+                                              fontSize: 17.0),
                                         ),
                                       ),
-                                    ]),
-                                    TableRow(children: [
-                                      TableCell(
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(6.0),
-                                          child: Text(
-                                            'Vehicle:',
-                                            style: TextStyle(
-                                                color: Colors.black87,
-                                                fontSize: 17.0,
-                                                fontWeight: FontWeight.bold),
-                                          ),
+                                    ),
+                                  ]),
+                                  TableRow(children: [
+                                    TableCell(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(6.0),
+                                        child: Text(
+                                          'Item:',
+                                          style: TextStyle(
+                                              color: Colors.black87,
+                                              fontSize: 17.0,
+                                              fontWeight: FontWeight.bold),
                                         ),
                                       ),
-                                      TableCell(
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(6.0),
-                                          child: Text(
-                                            dummyList![index].userId.toString(),
-                                            style: TextStyle(
-                                                color: Colors.black87,
-                                                fontSize: 17.0),
-                                          ),
+                                    ),
+                                    TableCell(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(6.0),
+                                        child: Text(
+                                          dummyList![index].userId.toString(),
+                                          style: TextStyle(
+                                              color: Colors.black87,
+                                              fontSize: 17.0),
                                         ),
                                       ),
-                                    ]),
-
-                                  ]);
-                            }),
-                      ),
-
-
-
-
-
-                    ],
-                  ),
+                                    ),
+                                  ]),
+                                ]);
+                          }),
+                    ),
+                  ],
                 ),
-
-
-                Positioned(
-                  bottom: 50,
-                  left: 0,
-                  right: 0,
-
-                  child: Widgets.callNow(),
-
-                ),
-              ],
-            )
+              ),
+              Positioned(
+                bottom: 50,
+                left: 0,
+                right: 0,
+                child: Widgets.callNow(),
+              ),
+            ],
+          )),
         ),
       ),
-    ),);
+    );
   }
 }

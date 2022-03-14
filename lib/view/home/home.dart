@@ -49,7 +49,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Icon(Icons.menu, size: 50,),
+                      InkWell(
+                          onTap: (){
+                            Navigator.pop(context);
+                          },
+                          child: Icon(Icons.menu, size: 50,),),
                       Image.asset("assets/icons/logo1.png",width: MediaQuery.of(context).size.width/3,),
                     ],
                   ),),
@@ -128,9 +132,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       SizedBox(height: 10,),
                       Widgets.actionButton2(context: context, action: (){},
                           text: "Calculators"),
-
-
-
 
                     ],
                   ),
